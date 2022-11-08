@@ -1,0 +1,80 @@
+replicaCount: 1
+
+names:
+  namespace: "haxm"
+  clusterRoleName: "xm-cluster-reader-role"
+  clusterRoleBindingName: "xm-cluster-role-binder"
+  deploymentName: "xm-daemonset"
+  podName: "xm-agent"
+  nodePortServiceName: "xm-node-port-service"
+  configMapName: "xm-config-map"
+
+image:
+  awsAccount: "575748868326"
+  region: "eu-west-1"
+  repository: "master-agent-repo"
+  pullPolicy: "Always"
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+env:
+  HAXM_CUSTOMER_ID: "1111-aaaa"
+  HAXM_SOUTH_SERVER_ADDRESS: "serveraddress"
+  HAXM_SOUTH_SERVER_PORT: "443"
+
+debug:
+  KUBE_COLLECTOR_SO_PATH: !!string ""
+  LOGGER: !!string ""
+
+imagePullSecrets: [xm-regcred]
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "xm-service-account"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service: {}
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

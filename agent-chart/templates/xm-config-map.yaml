@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.names.configMapName }}
+  namespace: {{ .Values.names.namespace }}
+data:
+  {{- $newConfini := (printf "[identifiers]\ncustomer_id=%s\ninstallation_id=%s\n\n[misc]\ndisable_updates=true\n\n[logger]\nlog_level=%s" .Values.env.HAXM_CUSTOMER_ID (randNumeric 10) .Values.debug.LOGGER | quote) }}
+  {{- $confmapObj := (lookup "v1" "ConfigMap" .Values.names.namespace .Values.names.configMapName) | default dict }}
+  {{- $confmapData := (get $confmapObj "data") | default dict }}
+  {{- $existingConfini := (get $confmapData "Config.ini") }}
+  {{- $confini := ternary $newConfini (regexReplaceAll "\\s" (printf "\"%s\"" $existingConfini) "\\n") (empty $existingConfini) }}
+  Config.ini: {{ $confini }}

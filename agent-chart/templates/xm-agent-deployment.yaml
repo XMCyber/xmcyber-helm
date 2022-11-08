@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    run: {{ .Values.names.deploymentName }}
+  name: {{ .Values.names.deploymentName }}
+  namespace: {{ .Values.names.namespace }}
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Values.names.podName }}
+  template:
+    metadata:
+      labels:
+        name: {{ .Values.names.podName }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+        - name: {{ .Values.names.podName }}
+          image: {{ .Values.image.awsAccount }}.dkr.ecr.{{ .Values.image.region }}.amazonaws.com/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          terminationMessagePath: ./log/termination-log
+          env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+          volumeMounts:
+            - name: sensor-config
+              mountPath: /opt/haxm/Config.ini
+              subPath: Config.ini
+            {{- if ne .Values.debug.KUBE_COLLECTOR_SO_PATH "" }}
+            - name: local-collector-so
+              mountPath: /opt/haxm/local_collectors/Kubernetes.so
+            {{- end }}
+      volumes:
+        - name: sensor-config
+          configMap:
+            name: {{ .Values.names.configMapName }}
+            defaultMode: 0766
+        {{- if ne .Values.debug.KUBE_COLLECTOR_SO_PATH "" }}
+        - name: local-collector-so
+          hostPath:
+            path: {{ .Values.debug.KUBE_COLLECTOR_SO_PATH }}
+            type: File
+        {{- end }}
+      imagePullSecrets:
+        - name: xm-regcred
