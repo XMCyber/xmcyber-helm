@@ -10,8 +10,8 @@ names:
   configMapName: "xm-config-map"
 
 image:
-  awsAccount: "575748868326"
-  region: "eu-west-1"
+  awsAccount: "964342484856"
+  region: "us-east-1"
   repository: "master-agent-repo"
   pullPolicy: "Always"
   # Overrides the image tag whose default is the chart appVersion.
