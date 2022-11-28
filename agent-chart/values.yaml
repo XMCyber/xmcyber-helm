@@ -6,7 +6,6 @@ names:
   clusterRoleBindingName: "xm-cluster-role-binder"
   deploymentName: "xm-daemonset"
   podName: "xm-agent"
-  nodePortServiceName: "xm-node-port-service"
   configMapName: "xm-config-map"
 
 image:
@@ -20,13 +19,12 @@ image:
 env:
   HAXM_CUSTOMER_ID: "1111-aaaa"
   HAXM_SOUTH_SERVER_ADDRESS: "serveraddress"
-  HAXM_SOUTH_SERVER_PORT: "443"
 
 debug:
   KUBE_COLLECTOR_SO_PATH: !!string ""
   LOGGER: !!string ""
 
-imagePullSecrets: [xm-regcred]
+imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 

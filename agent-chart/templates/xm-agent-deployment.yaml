@@ -44,5 +44,3 @@ spec:
             path: {{ .Values.debug.KUBE_COLLECTOR_SO_PATH }}
             type: File
         {{- end }}
-      imagePullSecrets:
-        - name: xm-regcred
