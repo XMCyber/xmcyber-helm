@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "agent-chart.name" -}}
+{{- define "xmcyber-sensor.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "agent-chart.fullname" -}}
+{{- define "xmcyber-sensor.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "agent-chart.chart" -}}
+{{- define "xmcyber-sensor.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "agent-chart.labels" -}}
-helm.sh/chart: {{ include "agent-chart.chart" . }}
-{{ include "agent-chart.selectorLabels" . }}
+{{- define "xmcyber-sensor.labels" -}}
+helm.sh/chart: {{ include "xmcyber-sensor.chart" . }}
+{{ include "xmcyber-sensor.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "agent-chart.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "agent-chart.name" . }}
+{{- define "xmcyber-sensor.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "xmcyber-sensor.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "agent-chart.serviceAccountName" -}}
+{{- define "xmcyber-sensor.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "agent-chart.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "xmcyber-sensor.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

@@ -7,7 +7,7 @@
 Add this repository to Helm.
 
 ```
-helm repo add xm-deamonset https://xmcyber.github.io/Agent-Chart/
+helm repo add xm-deamonset https://xmcyber.github.io/xmcyber-sensor/
 ```
 
 Install an xm-deamonset.
