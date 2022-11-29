@@ -17,7 +17,7 @@ image:
   tag: "latest"
 
 env:
-  HAXM_CUSTOMER_ID: "1111-aaaa"
+  HAXM_CUSTOMER_ID: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
   HAXM_SOUTH_SERVER_ADDRESS: "serveraddress"
 
 debug:
