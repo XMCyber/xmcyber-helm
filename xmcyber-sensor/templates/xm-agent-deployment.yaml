@@ -29,18 +29,10 @@ spec:
             - name: sensor-config
               mountPath: /opt/haxm/Config.ini
               subPath: Config.ini
-            {{- if ne .Values.debug.KUBE_COLLECTOR_SO_PATH "" }}
-            - name: local-collector-so
-              mountPath: /opt/haxm/local_collectors/Kubernetes.so
             {{- end }}
       volumes:
         - name: sensor-config
           configMap:
             name: {{ .Values.names.configMapName }}
             defaultMode: 0766
-        {{- if ne .Values.debug.KUBE_COLLECTOR_SO_PATH "" }}
-        - name: local-collector-so
-          hostPath:
-            path: {{ .Values.debug.KUBE_COLLECTOR_SO_PATH }}
-            type: File
         {{- end }}
