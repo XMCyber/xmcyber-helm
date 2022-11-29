@@ -25,14 +25,3 @@ spec:
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
-          volumeMounts:
-            - name: sensor-config
-              mountPath: /opt/haxm/Config.ini
-              subPath: Config.ini
-            {{- end }}
-      volumes:
-        - name: sensor-config
-          configMap:
-            name: {{ .Values.names.configMapName }}
-            defaultMode: 0766
-        {{- end }}
