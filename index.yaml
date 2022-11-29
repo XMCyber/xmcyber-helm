@@ -9,6 +9,6 @@ entries:
     name: xmcyber-sensor
     type: application
     urls:
-    - xmcyber-sensor-1.0.0.tgz
+    - xmcyber-sensor/xmcyber-sensor-1.0.0.tgz
     version: 1.0.0
 generated: "2022-11-29T11:51:07.1501852+02:00"
