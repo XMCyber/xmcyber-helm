@@ -5,13 +5,13 @@ names:
   clusterRoleName: "xm-cluster-reader-role"
   clusterRoleBindingName: "xm-cluster-role-binder"
   deploymentName: "xm-daemonset"
-  podName: "xm-agent"
+  podName: "xm-sensor"
   configMapName: "xm-config-map"
 
 image:
   awsAccount: "964342484856"
   region: "us-east-1"
-  repository: "master-agent-repo"
+  repository: "xmcyber-sensor"
   pullPolicy: "Always"
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
