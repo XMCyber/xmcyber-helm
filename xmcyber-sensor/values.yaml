@@ -76,3 +76,5 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+ingress: {}
