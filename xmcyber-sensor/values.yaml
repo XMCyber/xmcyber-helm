@@ -8,12 +8,11 @@ names:
   podName: "xm-sensor"
 
 image:
-  awsAccount: "964342484856"
-  region: "us-east-1"
+  awsAccount: "public.ecr.aws"
   repository: "xmcyber-sensor"
+  tag: "latest"
   pullPolicy: "Always"
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
 
 env:
   HAXM_CUSTOMER_ID: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"

@@ -17,7 +17,7 @@ spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
         - name: {{ .Values.names.podName }}
-          image: {{ .Values.image.awsAccount }}.dkr.ecr.{{ .Values.image.region }}.amazonaws.com/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+          image: {{ .Values.image.awsAccount }}/w0h0t2j5/{{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           terminationMessagePath: ./log/termination-log
           env:
