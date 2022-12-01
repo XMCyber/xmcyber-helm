@@ -3,7 +3,7 @@ entries:
   xmcyber-sensor:
   - apiVersion: v2
     appVersion: 1.6.846.961
-    created: "2022-12-01T12:12:37.5746349+02:00"
+    created: "2022-12-01T12:38:29.580300587+02:00"
     description: A Helm chart for XM Kubernetes Agent
     digest: 8dd04b8a5aaef954729a9f936ce8c784877f636ef87e77590b9648f52ae56dad
     name: xmcyber-sensor
@@ -11,4 +11,4 @@ entries:
     urls:
     - xmcyber-sensor-1.0.0.tgz
     version: 1.0.0
-generated: "2022-12-01T12:12:37.5741197+02:00"
+generated: "2022-12-01T12:38:29.579639286+02:00"
